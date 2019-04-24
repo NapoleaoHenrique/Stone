@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="pt-br"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.thymeleaf.org"
+    layout:decorator="~{layout}">
+<head>    
+
+	<title>Lista de Cadastro - Stone</title>
+
+</head>
+<body>        
+    <th:block layout:fragment="conteudo">
+        <section class="my-4">
+            <div class="container">
+                <h2>Lista de Colaboradores</h2>
+                
+                <form method="post" th:object="${usuario}"
+                    th:action="${#httpServletRequest.getServletPath()}">
+                <p>Cargo</p>
+                <form method="post" th:object="${usuario}"
+                    th:action="${#httpServletRequest.getServletPath()}">
+                <select id=cargo>
+    				<option value="" selected="selected"></option>
+    				<option value="Ajudante de Almoxarifado" >Ajudante de Almoxarifado</option>
+    				<option value="Analista Comercial" >Analista Comercial</option>
+    				<option value="Analista de Relacionamento com o Cliente" >Analista de Relacionamento com o Cliente</option>
+    				<option value="Assistente Comercial" >Assistente Comercial</option>
+    				<option value="Assistente de Recursos Humanos" >Assistente de Recursos Humanos</option>
+    				<option value="Auxiliar Administrativo" >Auxiliar Administrativo</option>
+    				<option value="Conferente" >Conferente</option>
+    				<option value="Desenvolvedor de Software" >Desenvolvedor de Software</option>
+    				<option value="Jovem Aprendiz" >Jovem Aprendiz</option>
+				    </select>
+				    
+				    <button type="submit" class="btn btn-primary">Filtrar</button>
+				</form>
+            </div>
+        </section>
+    
+        <section>
+            <div class="container">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-light text-center">
+                        
+                        
+                        
+						
+                            <tr>
+                                <th>Nome</th>
+                                
+                                <th>Idade</th>
+                                
+                                <th>Cargo</th>
+                                
+                                <th>Cadastro</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr th:each="usuario: ${usuarios}">
+                            
+                            	<td>
+                                    <a href="javascript:;" th:text="${usuario.nome}"
+                                        th:href="@{/usuarios/{id}/editar(id=${usuario.id})}">Nome</a>
+                                </td>                            
+                                
+                                <td>
+                                    <a href="javascript:;" th:text="${usuario.idade}"
+                                        th:href="@{/usuarios/{id}/editar(id=${usuario.id})}">Idade</a>
+                                </td>
+                                
+                                <td>
+                                    <a href="javascript:;" th:text="${usuario.cargo}"
+                                        th:href="@{/usuarios/{id}/editar(id=${usuario.id})}">Cargo</a>
+                                </td>
+
+                                <td class="text-center w-25"
+                                    th:text="${#temporals.format(usuario.cadastro, 'dd/MM/yyyy')}">10/10/2010</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </th:block>
+</body>
+</html>
+    
+
+    

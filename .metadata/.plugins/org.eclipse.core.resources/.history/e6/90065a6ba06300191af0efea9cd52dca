@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-br"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.thymeleaf.org"
+    layout:decorator="~{layout}">
+<head>    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    
+    <title>Lista de Usuários</title>
+</head>
+<body>        
+    <th:block layout:fragment="conteudo">
+        <section class="my-4">
+            <div class="container">
+                <h2>Lista de Usuários</h2>
+            </div>
+        </section>
+        
+        
+        
+        
+        
+            <header>    
+        <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="javascript:;">Caderno de Anotações</a>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" 
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;"
+                                th:href="@{/anotacoes}">Lista</a>
+                        </li>
+                          
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:;"
+                                th:href="@{/anotacoes/nova}">Nova</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    
+    
+        <section>
+            <div class="container">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead class="thead-light text-center">
+                            <tr>
+                                <th>Nome</th>
+                                
+                                <th>E-mail</th>
+                                
+                                <th>Cadastro</th>
+                            </tr>
+                        </thead>
+    
+                        <tbody>
+                            <tr th:each="usuario: ${usuarios}">
+                                <td>
+                                    <a href="javascript:;" th:text="${usuarios.nome}"
+                                        th:href="@{/usuarios/{id}/editar(id=${usuarios.id})}">Nome do Usuário</a>
+                                </td>
+                                
+                                <td>
+                                    <a href="javascript:;" th:text="${usuarios.email}"
+                                        th:href="@{/usuarios/{id}/editar(id=${usuarios.id})}">E-mail do Usuário</a>
+                                </td>
+                                
+
+                                <td class="text-center w-25"
+                                    th:text="${#temporals.format(usuarios.cadastro, 'dd/MM/yyyy')}">10/10/2010</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </th:block>
+</body>
+</html>

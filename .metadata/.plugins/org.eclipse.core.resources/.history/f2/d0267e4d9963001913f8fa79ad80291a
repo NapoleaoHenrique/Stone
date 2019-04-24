@@ -1,0 +1,16 @@
+package com.stone.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.stone.repository.UsuarioRepository;
+
+
+@Controller
+@RequestMapping("/usuarios")
+public class UsuariosController {
+	
+	private UsuarioRepository repository;
+	
+	
+
+}

@@ -1,0 +1,7 @@
+package com.stone.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BuscaRepository extends JpaRepository<T, ID> {
+
+}

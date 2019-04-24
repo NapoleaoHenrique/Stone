@@ -1,0 +1,5 @@
+package com.stone.controller;
+
+public @interface RequestMapping {
+
+}

@@ -1,0 +1,5 @@
+package com.stone.model;
+
+public class Usuario {
+
+}

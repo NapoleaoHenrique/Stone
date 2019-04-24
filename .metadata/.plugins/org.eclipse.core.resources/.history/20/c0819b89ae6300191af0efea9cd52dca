@@ -1,0 +1,43 @@
+package com.stone.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.stone.model.Usuario;
+import com.stone.repository.UsuarioRepository;
+
+@Controller
+@RequestMapping("/usuarios")
+public class UsuariosController {
+	
+	@Autowired
+	private UsuarioRepository repository;
+	
+	public ModelAndView criar(@Valid Usuario usuario, BindingResult br) {
+		if(br.hasErrors()) {
+			return novo();
+		}
+	}
+	
+	@GetMapping("/novo")
+	public ModelAndView novo() {
+		ModelAndView mv = new ModelAndView("usuarios/usuarios-cadastro");
+		mv.addObject("usuario", new Usuario());
+		return mv;
+	}
+	
+	@GetMapping
+	public ModelAndView listar() {
+		ModelAndView mv = new ModelAndView("/usuarios/usuarios-lista");
+		mv.addObject("usuarios", repository.findAll());
+		return mv;
+	}
+	
+	
+}

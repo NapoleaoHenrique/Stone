@@ -1,0 +1,2 @@
+insert into usuario (id, nome, email, cadastro) values (null, 'Napoleão Henrique', 27, 'Desenvolvedor de software', sysdate());
+insert into usuario (id, nome, email, cadastro) values (null, 'Thaís Gésus', 31, 'Analista de Relacionamento com o cliente', sysdate());

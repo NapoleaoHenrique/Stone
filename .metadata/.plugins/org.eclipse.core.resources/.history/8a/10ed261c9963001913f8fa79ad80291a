@@ -1,0 +1,10 @@
+package com.stone.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.stone.model.Usuario;
+
+public interface AnotacaoRepository extends JpaRepository<Usuario, Long> {
+
+	
+}

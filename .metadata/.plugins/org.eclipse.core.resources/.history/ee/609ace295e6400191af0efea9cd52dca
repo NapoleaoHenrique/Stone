@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-br"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.thymeleaf.org"
+    layout:decorator="~{layout}">
+<head>    
+    <title>Novo Cadastro - Stone</title>
+</head>
+<body>        
+    <th:block layout:fragment="conteudo">
+        <section class="my-4">
+            <div class="container">
+                <h2>Novo cadastro</h2>
+            </div>
+        </section>
+    
+        <section>            
+            <div class="container">
+                <form method="post" th:object="${usuario}"
+                    th:action="${#httpServletRequest.getServletPath()}">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert"
+                        th:if="${#fields.hasAnyErrors()}">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        <div th:each="erro: ${#fields.detailedErrors()}">
+                            <span th:text="${erro.message}">Mensagem de validação.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-success alert-dismissible fade show" role="alert"
+                        th:if="${!#strings.isEmpty(mensagem)}">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        
+                        <span th:text="${mensagem}">Mensagem de sucesso.</span>                       
+                    </div>
+                    
+                    <div class="form-group"
+                        th:if="${usuario.id}">
+                        <label for="id">Id</label> 
+                        <input type="text" class="form-control-plaintext" disabled 
+                            th:field="*{id}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="nome">Nome</label> 
+                        <input type="text" class="form-control"
+                            placeholder="Nome"
+                            th:field="*{nome}"/>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="idade">Idade</label>
+                        
+                        <input type="text" class="form-control"
+                            placeholder="Idade"
+                            th:field="*{idade}"/>
+                    </div>
+                    
+                    
+                    <!-- <div class="form-group">
+                    	<label for="cargo">Cargo</label>
+                    	
+               			<select th:field="*{cargo}" id=cargo>
+    						<option value="" selected="selected"></option>
+    						<option value="Ajudante de Almoxarifado" >Ajudante de Almoxarifado</option>
+    						<option value="Analista Comercial" >Analista Comercial</option>
+    						<option value="Analista de Relacionamento com o Cliente" >Analista de Relacionamento com o Cliente</option>
+    						<option value="Assistente Comercial" >Assistente Comercial</option>
+    						<option value="Assistente de Recursos Humanos" >Assistente de Recursos Humanos</option>
+    						<option value="Auxiliar Administrativo" >Auxiliar Administrativo</option>
+    						<option value="Conferente" >Conferente</option>
+    						<option value="Desenvolvedor de Software" >Desenvolvedor de Software</option>
+    						<option value="Jovem Aprendiz" >Jovem Aprendiz</option>
+				    	</select>
+                    </div> -->
+                    
+                    <div class="form-group">
+                    	<label for="cargo">Cargo</label>
+                                        <select id="pais" th:field="*{usuario}">
+						<option value="">Selecione o cargo</option>
+						<option th:each="usuario : ${usuario}" th:value="${usuario.cargo}" th:text="${usuario.cargo}" selected="selected"></option>
+					</select>
+                    </div>
+                    
+                    
+                    <!-- <div class="form-group">
+                        <label for="cargo">Cargo</label>
+                        
+                        <input type="text" class="form-control"
+                            placeholder="Cargo"
+                            th:field="*{cargo}"/>
+                    </div> -->
+                    
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+            </div>
+            
+    
+        </section>
+    </th:block>
+</body>
+</html>
